@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { animate, motion, stagger } from "motion";
+import { animate, stagger } from "motion/react";
 
 function Header() {
   const pathname = usePathname();
@@ -27,53 +27,11 @@ function Header() {
     return () => window.removeEventListener("resize", handleResize);
   }, [isMenuOpen]);
 
-  // Handle animations and body scroll lock when menu opens/closes
-  useEffect(() => {
-    // Save the current body position
-    const scrollY = window.scrollY;
-    
-    if (isMenuOpen) {
-      // Comprehensive approach for iOS and other devices
-      document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = '100%';
-      
-      // Animate menu items with staggered reveal
-      animate(
-        '.mobile-menu-item',
-        { opacity: [0, 1], x: [-50, 0], rotateX: [90, 0] },
-        { delay: stagger(0.1), duration: 0.5, easing: 'ease-out' }
-      );
-    } else {
-      // Re-enable scrolling when menu closes
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      
-      // Restore scroll position
-      if (document.body.style.top) {
-        window.scrollTo(0, parseInt(document.body.style.top || '0') * -1);
-      }
-    }
-    
-    // Clean up on unmount
-    return () => {
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      
-      // Restore scroll position on unmount if needed
-      if (document.body.style.top) {
-        window.scrollTo(0, parseInt(document.body.style.top || '0') * -1);
-      }
-    };
-  }, [isMenuOpen]);
 
   return (
-    <header className="lg:container mx-auto px-4 sm:px-10 py-8 md:py-10 relative z-50">
+    <header className="pb-26 md:pb-29">
+       <div className="fixed left-0 right-0 z-50 bg-white shadow-sm">
+ <div className="lg:container mx-auto px-6 sm:px-10 py-8.5 md:py-10">
       <div className="flex items-center justify-between">
         <Link href="/" className="relative z-20">
           <Image src="/shared/desktop/logo-dark.png" alt="Logo" width={196} height={24} />
@@ -98,10 +56,11 @@ function Header() {
 
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden" 
+          className="md:hidden z-30" 
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           suppressHydrationWarning={true}
+          style={{ touchAction: 'manipulation' }}
         >
           <Image 
             src={isMenuOpen ? "/shared/mobile/icon-close.svg" : "/shared/mobile/icon-hamburger.svg"} 
@@ -113,7 +72,7 @@ function Header() {
 
         {/* Mobile Menu Panel */}
         <div 
-          className={`fixed top-[89px] left-0 right-0 bottom-0 bg-peach z-10 transform transition-transform duration-300 ease-in-out md:hidden ${isMenuOpen ? 'translate-y-0' : 'translate-y-full'}`}
+          className={`fixed top-[89px] left-0 right-0 bottom-0 bg-peach z-20 transform transition-transform duration-300 ease-in-out md:hidden ${isMenuOpen ? 'translate-y-0' : 'translate-y-full'}`}
         >
           <nav className="flex flex-col px-6 py-12 space-y-8">
             {menuItems.map((item, index) => {
@@ -141,7 +100,11 @@ function Header() {
           </div>
         </div>
       </div>
+    </div>
+    </div>
     </header>
+   
+   
   );
 }
 

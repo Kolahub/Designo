@@ -1,49 +1,23 @@
-'use client'
+import { getServiceData } from '@/lib/data'
+import ServicePageClient from '@/components/client/ServicePageClient'
 
-import React, { useState, useEffect } from 'react'
-import ServicePage from '@/components/ServicePage'
-
-function WebDesign() {
-  const [serviceData, setServiceData] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch('/data/projects.json')
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`)
-        }
-        const data = await response.json()
-        setServiceData(data.webDesign)
-        setLoading(false)
-      } catch (error) {
-        console.error('Error fetching data:', error)
-        setError('Failed to load service data. Please try again later.')
-        setLoading(false)
-      }
-    }
-
-    fetchData()
-  }, [])
-
-  if (loading) {
-    return <div className="min-h-screen flex items-center justify-center">Loading...</div>
-  }
-
-  if (error) {
-    return <div className="min-h-screen flex items-center justify-center text-red-500">{error}</div>
-  }
+// This is a Server Component - no 'use client' directive needed
+export default async function WebDesign() {
+  // Server-side data fetching
+  const serviceData = await getServiceData('webDesign')
   
   return (
-    <ServicePage 
+    <ServicePageClient 
       hero={serviceData.hero}
       projects={serviceData.projects}
       relatedServices={serviceData.relatedServices}
-      serviceType="webDesign" 
+      bgPattern="/web-design/desktop/bg-pattern-intro-web.svg" 
     />
   )
 }
 
-export default WebDesign
+// Add static metadata
+export const metadata = {
+  title: 'Web Design Services - Designo',
+  description: 'We build websites that serve as powerful marketing tools and bring memorable brand experiences.'
+}

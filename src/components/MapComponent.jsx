@@ -93,7 +93,7 @@ function MapComponent({ center, zoom, country }) {
   return (
     <div 
       ref={mapRef} 
-      className="w-full h-full rounded-xl min-h-[320px]" 
+      className="w-full h-full sm:rounded-xl min-h-[320px]" 
       style={{ zIndex: 0 }}
       aria-label={`Map showing location of Designo ${country} Office`}
     />

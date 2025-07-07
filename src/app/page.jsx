@@ -2,35 +2,38 @@ import Header from "@/components/layouts/Header";
 import Footer from "@/components/layouts/Footer";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
-function Home() {
+// Define homepage metadata
+export const metadata = {
+  title: 'Designo | Award-winning custom designs and digital branding solutions',
+  description: 'With over 10 years in the industry, we are experienced in creating fully responsive websites, app design, and engaging brand experiences.',
+};
+
+export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen relative">
+    <div className="min-h-screen relative">
       <Header />
 
       {/* Hero section */}
-      <section className="lg:container mx-auto sm:px-10 ">
+      <section className="lg:container mx-auto sm:px-10">
         {/* Background pattern */}
-        <div className="relative bg-peach overflow-hidden sm:rounded-2xl lg:py-32">
-        <div className="absolute right-0 top-0 h-full w-full overflow-hidden z-0">
+        <div className="relative flex flex-col lg:flex-row items-center bg-peach overflow-hidden sm:rounded-2xl h-[843px] lg:h-[640px] py-20 md:py-15 px-6 md:px-14.5 lg:px-23.75 lg:py-0 ">
+        <div className="absolute -right-30.25 lg:right-0 top-25.5 lg:top-0 overflow-hidden z-0">
           <Image
             src="/home/desktop/bg-pattern-hero-home.svg"
             alt=""
             width={640}
             height={640}
-            className="absolute top-0 right-0 md:-right-[100px] lg:-top-[180px] lg:-right-[180px]"
             aria-hidden="true"
           />
         </div>
 
         {/* Content for all screen sizes */}
-        <div className="relative z-10 text-center md:text-center lg:text-left px-6 pt-20 md:pt-16 lg:pt-0 lg:h-full lg:flex lg:items-center">
-          <div className="lg:w-1/2 flex flex-col lg:pl-16 lg:pr-0">
-            <h1 className="text-white text-3xl md:text-5xl font-medium leading-tight mb-6 max-w-md md:max-w-xl mx-auto lg:mx-0">
+          <div className="flex flex-col items-center lg:items-start relative z-10">
+            <h1 className="text-white text-center lg:text-start text-3xl md:text-5xl font-medium leading-tight mb-2 lg:mb-6 max-w-md md:max-w-xl">
               Award-winning custom designs and digital branding solutions
             </h1>
-            <p className="text-white text-base md:text-lg mb-8 max-w-md md:max-w-lg mx-auto lg:mx-0">
+            <p className="text-white text-center lg:text-start mb-4.75 lg:mb-8 max-w-md md:max-w-lg">
               With over 10 years in the industry, we are experienced in creating fully responsive websites, app design, and engaging brand experiences. Find out more about our services.
             </p>
             <div className="mb-8 lg:mb-0">
@@ -41,124 +44,62 @@ function Home() {
                 Learn More
               </Link>
             </div>
-          </div>
         </div>
 
-        {/* Phone image for all screen sizes with proper positioning */}
-        <div className="absolute right-0 top-0 h-full w-full lg:w-1/2 flex items-end md:items-end lg:items-center justify-center lg:justify-end overflow-visible">
-          {/* For mobile - positioned at bottom */}
-          <div className="block md:hidden relative w-[284px] h-[573px]">
+        <div className="absolute top-[300px] lg:-right-16 lg:top-0 hidden sm:block z-0">
+            <Image
+              src="/home/desktop/image-hero-phone.png"
+              alt="Phone showcase"
+              width={624}
+              height={913}
+              className=""
+            />
+          </div>
+
+          <div className="absolute -bottom-100 lg:-right-16 lg:top-0 block sm:hidden h-250 w-450 z-0">
             <Image
               src="/home/desktop/image-hero-phone.png"
               alt="Phone showcase"
               fill
-              className="object-contain absolute -bottom-6"
-              priority
+              className="object-contain"
             />
           </div>
+
           
-          {/* For tablet - positioned at bottom */}
-          <div className="hidden md:block lg:hidden relative w-[400px] h-[720px]">
-            <Image
-              src="/home/desktop/image-hero-phone.png"
-              alt="Phone showcase"
-              fill
-              className="object-contain absolute -bottom-32"
-              priority
-            />
-          </div>
-          
-          {/* For desktop - positioned to overlap right edge */}
-          <div className="hidden lg:block relative w-[600px] h-[913px] overflow-visible">
-            <Image
-              src="/home/desktop/image-hero-phone.png"
-              alt="Phone showcase"
-              fill
-              className="object-contain absolute -right-16 -top-12"
-              priority
-            />
-          </div>
-        </div>
         </div>
      
       </section>
 
       {/* Services section */}
-      <section className="lg:container mx-auto sm:px-10 py-16 lg:py-32">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-[640px]">
-          {/* Web Design Card */}
-          <Link
-            href="/web-design"
-            className="relative bg-black rounded-2xl overflow-hidden group h-full"
-          >
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-peach/80 transition-colors duration-300 flex flex-col items-center justify-center text-center z-10">
-              <h2 className="text-white text-3xl md:text-4xl font-medium uppercase mb-3">
-                Web Design
-              </h2>
-              <p className="text-white flex items-center uppercase tracking-widest font-medium">
-                View Projects <span className="ml-4">&rarr;</span>
-              </p>
-            </div>
-            <Image
-              src="/home/desktop/image-web-design-large.jpg"
-              alt="Web Design"
-              fill
-              className="object-cover"
-            />
-          </Link>
-
-          <div className="flex flex-col gap-6">
-            {/* App Design Card */}
-            <Link
-              href="/app-design"
-              className="relative bg-black rounded-2xl overflow-hidden group h-full"
-            >
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-peach/80 transition-colors duration-300 flex flex-col items-center justify-center text-center z-10">
-                <h2 className="text-white text-3xl md:text-4xl font-medium uppercase mb-3">
-                  App Design
-                </h2>
-                <p className="text-white flex items-center uppercase tracking-widest font-medium">
-                  View Projects <span className="ml-4">&rarr;</span>
-                </p>
-              </div>
-              <Image
-                src="/home/desktop/image-app-design.jpg"
-                alt="App Design"
-                fill
-                className="object-cover"
-              />
-            </Link>
-
-            {/* Graphic Design Card */}
-            <Link
-              href="/graphic-design"
-              className="relative bg-black rounded-2xl overflow-hidden group h-full"
-            >
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-peach/80 transition-colors duration-300 flex flex-col items-center justify-center text-center z-10">
-                <h2 className="text-white text-3xl md:text-4xl font-medium uppercase mb-3">
-                  Graphic Design
-                </h2>
-                <p className="text-white flex items-center uppercase tracking-widest font-medium">
-                  View Projects <span className="ml-4">&rarr;</span>
-                </p>
-              </div>
-              <Image
-                src="/home/desktop/image-graphic-design.jpg"
-                alt="Graphic Design"
-                fill
-                className="object-cover"
-              />
-            </Link>
+      <section className="lg:container mx-auto px-6 sm:px-10 py-16 lg:py-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 grid-rows-2 gap-6 lg:h-[640px]">
+          <Link href="/web-design" className="relative lg:row-span-2 bg-[url('/home/desktop/image-web-design-small.jpg')] lg:bg-[url('/home/desktop/image-web-design-large.jpg')] bg-cover rounded-2xl overflow-hidden group lg:h-full md:h-[12.5rem] h-[15.7rem]">
+          <div className="absolute bg-black/50 hover:bg-peach/75 inset-0 flex flex-col gap-6 items-center justify-center">
+          <h3 className="text-white text-[1.75rem] sm:text-[2.5rem] font-medium uppercase tracking-wide">Web Design</h3>
+          <p className="text-white font-medium flex items-center gap-4"> <span>View Projects</span> <Image src="/shared/desktop/icon-right-arrow.svg" alt="arrow" width={16} height={16} /></p>
           </div>
+          </Link>
+          <Link href="/app-design" className="relative bg-black/50 hover:bg-peach/75 lg:col-start-2 bg-[url('/home/desktop/image-app-design.jpg')] bg-cover rounded-2xl overflow-hidden group lg:h-full md:h-[12.5rem] h-[15.7rem]">
+          <div className="absolute bg-black/50 hover:bg-peach/75 inset-0 flex flex-col gap-6 items-center justify-center">
+<h3 className="text-white text-[1.75rem] sm:text-[2.5rem] font-medium uppercase tracking-wide">App Design</h3>
+<p className="text-white font-medium flex items-center gap-4"> <span>View Projects</span> <Image src="/shared/desktop/icon-right-arrow.svg" alt="arrow" width={16} height={16} /></p>
+</div>
+</Link>
+          <Link href="/graphic-design" className="relative bg-black/50 hover:bg-peach/75 lg:col-start-2 bg-[url('/home/desktop/image-graphic-design.jpg')] bg-cover rounded-2xl overflow-hidden group lg:h-full md:h-[12.5rem] h-[15.7rem]">
+          <div className="absolute bg-black/50 hover:bg-peach/75 inset-0 flex flex-col gap-6 items-center justify-center">
+<h3 className="text-white text-[1.75rem] sm:text-[2.5rem] font-medium uppercase tracking-wide">Graphic Design</h3>
+<p className="text-white font-medium flex items-center gap-4 uppercase tracking-[0.3rem]"> <span>View Projects</span> <Image src="/shared/desktop/icon-right-arrow.svg" alt="arrow" width={16} height={16} /></p>
+</div>
+</Link>
         </div>
       </section>
 
       {/* Features section */}
-      <section className="lg:container mx-auto sm:px-10 pb-16 lg:pb-32">
+      <section className="lg:container mx-auto px-6 sm:px-10 pb-16 lg:pb-32">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
           {/* Passionate */}
           <div className="flex flex-col items-center text-center">
-            <div className="relative mb-8">
+            <div className="bg-[url('/shared/desktop/bg-pattern-small-circle.svg')] bg-no-repeat bg-center relative mb-8">
               <Image
                 src="/home/desktop/illustration-passionate.svg"
                 alt="Passionate"
@@ -166,7 +107,7 @@ function Home() {
                 height={202}
               />
             </div>
-            <h3 className="text-xl font-medium uppercase tracking-wide mb-4">
+            <h3 className="text-xl font-medium uppercase tracking-[0.3rem] mb-4">
               Passionate
             </h3>
             <p className="text-dark-grey">
@@ -178,7 +119,7 @@ function Home() {
 
           {/* Resourceful */}
           <div className="flex flex-col items-center text-center">
-            <div className="relative mb-8">
+            <div className="bg-[url('/shared/desktop/bg-pattern-small-circle.svg')] bg-no-repeat bg-center relative mb-8">
               <Image
                 src="/home/desktop/illustration-resourceful.svg"
                 alt="Resourceful"
@@ -186,7 +127,7 @@ function Home() {
                 height={202}
               />
             </div>
-            <h3 className="text-xl font-medium uppercase tracking-wide mb-4">
+            <h3 className="text-xl font-medium uppercase tracking-[0.3rem] mb-4">
               Resourceful
             </h3>
             <p className="text-dark-grey">
@@ -198,7 +139,7 @@ function Home() {
 
           {/* Friendly */}
           <div className="flex flex-col items-center text-center">
-            <div className="relative mb-8">
+            <div className="bg-[url('/shared/desktop/bg-pattern-small-circle.svg')] bg-no-repeat bg-center relative mb-8">
               <Image
                 src="/home/desktop/illustration-friendly.svg"
                 alt="Friendly"
@@ -206,7 +147,7 @@ function Home() {
                 height={202}
               />
             </div>
-            <h3 className="text-xl font-medium uppercase tracking-wide mb-4">
+            <h3 className="text-xl font-medium uppercase tracking-[0.3rem] mb-4">
               Friendly
             </h3>
             <p className="text-dark-grey">
@@ -230,5 +171,3 @@ function Home() {
     </div>
   );
 }
-
-export default Home;

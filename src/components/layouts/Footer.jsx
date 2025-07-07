@@ -7,7 +7,7 @@ function Footer({hideCta = false}) {
     <div className="">
       {/* CTA Section */}
       {!hideCta && (
-      <section className="container mx-auto px-6 sm:px-10 lg:px-0 -mb-52 md:-mb-21.5 lg::-mb-18 relative">
+      <section className="lg:container mx-auto px-6 sm:px-10 -mb-52 md:-mb-21.5 lg::-mb-18 relative">
         <div className="relative bg-peach rounded-2xl overflow-hidden py-16 md:py-14.25 lg:py-18.5 px-6 md:px-14.25 lg:px-24">
           <div className="flex flex-col lg:flex-row items-center justify-between">
             <div className="relative z-20 lg:w-1/2 text-center lg:text-left mb-8 lg:mb-0">
@@ -59,7 +59,7 @@ function Footer({hideCta = false}) {
 
       {/* Footer */}
       <footer className={`bg-black pb-16 md:pb-20 lg:pb-18 ${hideCta ? 'pt-16 md:pt-20 lg:pt-18' : 'pt-66 md:pt-41.5 lg:pt-36 '}`}>
-        <div className="container mx-auto px-6 md:px-10 lg:px-0">
+        <div className="lg:container mx-auto px-6 sm:px-10">
           <div className="flex flex-col md:flex-row items-center justify-between sm:pb-12 sm:border-b sm:border-dark-grey">
             <div className="mb-8 md:mb-0">
               <Image
@@ -69,7 +69,7 @@ function Footer({hideCta = false}) {
                 height={24}
               />
             </div>
-            <div className="flex flex-col md:justify-end md:flex-row gap-8 md:gap-10 pt-8 sm:pt-0 border-t border-dark-grey sm:border-b-0 w-full">
+            <div className="flex flex-col md:justify-end md:flex-row gap-8 md:gap-10 pt-8 sm:pt-0 border-t border-dark-grey sm:border-t-0 w-full">
               {[
                 { label: "Our Company", href: "/our-company" },
                 { label: "Locations", href: "/locations" },

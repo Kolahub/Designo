@@ -1,49 +1,23 @@
-'use client'
+import { getServiceData } from '@/lib/data'
+import ServicePageClient from '@/components/client/ServicePageClient'
 
-import React, { useState, useEffect } from 'react'
-import ServicePage from '@/components/ServicePage'
-
-function GraphicDesign() {
-  const [serviceData, setServiceData] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch('/data/projects.json')
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`)
-        }
-        const data = await response.json()
-        setServiceData(data.graphicDesign)
-        setLoading(false)
-      } catch (error) {
-        console.error('Error fetching data:', error)
-        setError('Failed to load service data. Please try again later.')
-        setLoading(false)
-      }
-    }
-
-    fetchData()
-  }, [])
-
-  if (loading) {
-    return <div className="min-h-screen flex items-center justify-center">Loading...</div>
-  }
-
-  if (error) {
-    return <div className="min-h-screen flex items-center justify-center text-red-500">{error}</div>
-  }
+// This is a Server Component - no 'use client' directive needed
+export default async function GraphicDesign() {
+  // Server-side data fetching
+  const serviceData = await getServiceData('graphicDesign')
   
   return (
-    <ServicePage 
+    <ServicePageClient 
       hero={serviceData.hero}
       projects={serviceData.projects}
       relatedServices={serviceData.relatedServices}
-      serviceType="graphicDesign" 
+      bgPattern="/graphic-design/desktop/bg-pattern-intro-graphic.svg" 
     />
   )
 }
 
-export default GraphicDesign
+// Add static metadata
+export const metadata = {
+  title: 'Graphic Design Services - Designo',
+  description: 'We deliver eye-catching branding materials that are tailored to meet your business objectives.'
+}
