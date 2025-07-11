@@ -4,7 +4,6 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { animate, stagger } from "motion/react";
 
 function Header() {
   const pathname = usePathname();
@@ -33,7 +32,7 @@ function Header() {
        <div className="fixed left-0 right-0 z-50 bg-white shadow-sm">
  <div className="lg:container mx-auto px-6 sm:px-10 py-8.5 md:py-10">
       <div className="flex items-center justify-between">
-        <Link href="/" className="relative z-20">
+        <Link href="/" className="relative z-20 active:scale-90 transition-transform duration-300">
           <Image src="/shared/desktop/logo-dark.png" alt="Logo" width={196} height={24} />
         </Link>
         
@@ -45,7 +44,7 @@ function Header() {
               <Link 
                 key={index} 
                 href={item.href} 
-                className={`uppercase text-sm tracking-widest relative ${isActive ? 'text-peach font-bold' : 'text-dark-grey hover:underline'}`}
+                className={`uppercase text-sm tracking-widest relative ${isActive ? 'text-peach font-bold' : 'text-dark-grey hover:underline active:scale-90 transition-transform duration-300'}`}
               >
                 {item.label}
                 {isActive && <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-peach"></span>}
@@ -81,7 +80,7 @@ function Header() {
                 <Link 
                   key={index} 
                   href={item.href} 
-                  className={`mobile-menu-item uppercase relative z-10 text-white text-2xl tracking-wide ${isActive ? 'font-bold' : 'font-medium'}`}
+                  className={`mobile-menu-item uppercase relative z-10 text-white text-2xl tracking-wide active:scale-90 transition-transform duration-300 ${isActive ? 'font-bold' : 'font-medium'}`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}

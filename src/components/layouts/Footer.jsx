@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import SocialIcon from "../SocialIcon";
 
 function Footer({hideCta = false}) {
   return (
@@ -22,7 +23,7 @@ function Footer({hideCta = false}) {
             <div className="relative z-20">
               <Link
                 href="/contact"
-                className=" inline-block bg-white text-dark-grey hover:bg-light-peach hover:text-white transition-colors duration-300 uppercase font-medium tracking-wide px-6 py-4 rounded-lg"
+                className=" inline-block bg-white text-dark-grey hover:bg-light-peach hover:text-white active:scale-90 transition-all duration-300 uppercase font-medium tracking-wide px-6 py-4 rounded-lg"
               >
                 Get in Touch
               </Link>
@@ -78,7 +79,7 @@ function Footer({hideCta = false}) {
                 <Link
                   key={index}
                   href={item.href}
-                  className="text-white uppercase text-sm hover:underline text-center md:text-left"
+                  className="text-white uppercase text-sm hover:underline active:scale-90 transition-all duration-300 text-center md:text-left"
                 >
                   {item.label}
                 </Link>
@@ -99,46 +100,15 @@ function Footer({hideCta = false}) {
                 <p>M: contact@designo.co</p>
               </div>
               <div className="flex justify-center md:justify-end gap-4 items-center">
-                <Link href="#" aria-label="Facebook">
-                  <Image
-                    src="/shared/desktop/icon-facebook.svg"
-                    alt="Facebook"
-                    width={24}
-                    height={24}
-                  />
-                </Link>
-                <Link href="#" aria-label="YouTube">
-                  <Image
-                    src="/shared/desktop/icon-youtube.svg"
-                    alt="YouTube"
-                    width={24}
-                    height={24}
-                  />
-                </Link>
-                <Link href="#" aria-label="Twitter">
-                  <Image
-                    src="/shared/desktop/icon-twitter.svg"
-                    alt="Twitter"
-                    width={24}
-                    height={24}
-                  />
-                </Link>
-                <Link href="#" aria-label="Pinterest">
-                  <Image
-                    src="/shared/desktop/icon-pinterest.svg"
-                    alt="Pinterest"
-                    width={24}
-                    height={24}
-                  />
-                </Link>
-                <Link href="#" aria-label="Instagram">
-                  <Image
-                    src="/shared/desktop/icon-instagram.svg"
-                    alt="Instagram"
-                    width={24}
-                    height={24}
-                  />
-                </Link>
+                {[
+                  { href: "#", ariaLabel: "Facebook", iconPath: "/shared/desktop/icon-facebook.svg", alt: "Facebook" },
+                  { href: "#", ariaLabel: "YouTube", iconPath: "/shared/desktop/icon-youtube.svg", alt: "YouTube" },
+                  { href: "#", ariaLabel: "Twitter", iconPath: "/shared/desktop/icon-twitter.svg", alt: "Twitter" },
+                  { href: "#", ariaLabel: "Pinterest", iconPath: "/shared/desktop/icon-pinterest.svg", alt: "Pinterest" },
+                  { href: "#", ariaLabel: "Instagram", iconPath: "/shared/desktop/icon-instagram.svg", alt: "Instagram" },
+                ].map((icon, index) => (
+                  <SocialIcon key={index} {...icon} />
+                ))}
               </div>
             </div>
           </div>

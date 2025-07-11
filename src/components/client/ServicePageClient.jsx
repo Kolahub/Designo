@@ -39,7 +39,7 @@ export default function ServicePageClient({
             {/* Mobile Background patterns */}
             <div className="absolute top-0 right-0 -rotate-90 block md:hidden">
               <Image
-                src='/shared/desktop/bg-pattern-small-circle.svg'
+                src="/shared/desktop/bg-pattern-small-circle.svg"
                 width={300}
                 height={300}
                 alt=""
@@ -67,7 +67,7 @@ export default function ServicePageClient({
                   />
                 </div>
                 {/* Content container - horizontal for tablet, vertical for mobile/desktop */}
-                <div className="bg-cream p-8 flex-1 flex flex-col justify-center md:text-left lg:text-center cursor-pointer hover:bg-peach group">
+                <div className="bg-cream p-8 flex-1 flex flex-col justify-center md:text-left lg:text-center cursor-pointer hover:bg-peach group transition-all duration-300">
                   <h3 className="text-peach text-xl uppercase tracking-[0.3rem] font-medium mb-4 group-hover:text-white">
                     {project.title}
                   </h3>
@@ -87,10 +87,16 @@ export default function ServicePageClient({
               <Link
                 key={service.type}
                 href={service.path}
-                className="relative bg-black/50 hover:bg-peach/75 bg-cover rounded-2xl overflow-hidden group lg:h-full md:h-[12.5rem] h-[15.7rem]"
-                style={{ backgroundImage: `url(${service.image})` }}
+                className="relative overflow-hidden group rounded-2xl lg:h-full md:h-[12.5rem] h-[15.7rem]"
               >
-                <div className="absolute bg-black/50 hover:bg-peach/75 inset-0 flex flex-col gap-6 items-center justify-center">
+                {/* Zooming background layer */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 scale-100 group-hover:scale-110"
+                  style={{ backgroundImage: `url(${service.image})` }}
+                />
+
+                {/* Color overlay and content */}
+                <div className="absolute inset-0 bg-black/50 group-hover:bg-peach/75 transition-colors duration-300 flex flex-col gap-6 items-center justify-center z-10">
                   <h3 className="text-white text-[1.75rem] sm:text-[2.5rem] font-medium uppercase tracking-wide">
                     {service.name.toUpperCase()}
                   </h3>

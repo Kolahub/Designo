@@ -13,7 +13,7 @@ export default function SubmitButton() {
   return (
     <button 
       type="submit" 
-      className="bg-white text-black font-medium py-4 px-12 rounded-lg hover:bg-light-peach hover:text-white transition-colors duration-300 uppercase tracking-wider disabled:opacity-70"
+      className="cursor-pointer bg-white text-black font-medium py-4 px-12 rounded-lg hover:bg-light-peach hover:text-white active:scale-90 transition-all duration-300 uppercase tracking-wider disabled:opacity-70"
       disabled={pending}
       suppressHydrationWarning={true}
     >
