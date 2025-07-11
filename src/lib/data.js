@@ -1,14 +1,14 @@
+import projectsData from '../../public/data/projects.json';
+
 export async function getServiceData(serviceType) {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || '';
-    const url = `${baseUrl}/data/projects.json`;
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch service data: ${response.status}`);
+    // Direct access to the imported JSON file
+    // This works both in development and production builds
+    if (!projectsData[serviceType]) {
+      throw new Error(`Service type '${serviceType}' not found in data`);
     }
-
-    const data = await response.json();
-    return data[serviceType];
+    
+    return projectsData[serviceType];
   } catch (error) {
     console.error('Error fetching service data:', error);
     throw error;
