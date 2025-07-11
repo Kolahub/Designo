@@ -1,6 +1,6 @@
 export async function getServiceData(serviceType) {
   try {
-    const response = await fetch('/data/projects.json');
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/data/projects.json`);
     if (!response.ok) {
       throw new Error(`Failed to fetch service data: ${response.status}`);
     }
