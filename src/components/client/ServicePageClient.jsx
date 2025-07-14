@@ -82,7 +82,7 @@ export default function ServicePageClient({
 
         {/* Related Services Section */}
         <section className="lg:container mx-auto px-6 sm:px-10 pb-20 md:pb-32">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-7.5 lg:h-77">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-7.5 lg:h-77">
             {relatedServices.map((service) => (
               <Link
                 key={service.type}
